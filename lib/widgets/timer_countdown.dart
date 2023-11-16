@@ -23,19 +23,22 @@ class TimerCountdown extends StatefulWidget {
   final Duration duration;
   final bool zenMode;
   final bool playSounds;
-  TimerCountdown(this.duration, {this.zenMode, this.playSounds, Key key})
-      : super(key: key);
+
+  TimerCountdown(this.duration, {required this.zenMode, required this.playSounds, Key? key}) : super(key: key);
 
   @override
   _TimerCountdown createState() => _TimerCountdown();
 }
 
 class _TimerCountdown extends State<TimerCountdown> {
-  Stopwatch _stopwatch;
+  late Stopwatch _stopwatch;
+
   // The thing that ticks
-  Timer _timer;
+  late Timer _timer;
+
   // Keeps track of how much time has elapsed
-  Duration _elapsedTime;
+  late Duration _elapsedTime;
+
   // This string that is displayed as the countdown timer
   String _display = 'Be at peace';
 
@@ -109,8 +112,7 @@ class _TimerCountdown extends State<TimerCountdown> {
     });
 
     if (cancelled) {
-      Navigator.of(context).pushReplacement(
-          PageRoutes.fade(() => MainScreen(), milliseconds: 450));
+      Navigator.of(context).pushReplacement(PageRoutes.fade(() => MainScreen(), milliseconds: 450));
     } else {
       Quote _quote = getQuote(context);
       Navigator.of(context).pushReplacement(PageRoutes.fade(
@@ -141,7 +143,7 @@ class _TimerCountdown extends State<TimerCountdown> {
                     Container(
                       child: Text(
                         _display,
-                        style: Theme.of(context).textTheme.bodyText1,
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ),
                   ],
@@ -151,19 +153,25 @@ class _TimerCountdown extends State<TimerCountdown> {
           flex: 1,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 21.0),
-            child: FlatButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(68.0)),
-              color: Theme.of(context).disabledColor,
-              onPressed: () => stop(),
-              child: Text(
-                S.of(context).endButton.toUpperCase(),
-                style: GoogleFonts.varelaRound(
-                  color: Color(0xFF707073),
-                  fontWeight: FontWeight.w600,
-                  fontSize: 18.0,
+            child: SizedBox(
+              width: double.infinity,
+              child: TextButton(
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(68.0),
+                  )),
+                  backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).disabledColor),
                 ),
-              ).padding(all: 18.0),
+                onPressed: () => stop(),
+                child: Text(
+                  S.of(context)!.endButton.toUpperCase(),
+                  style: GoogleFonts.varelaRound(
+                    color: Color(0xFF707073),
+                    fontWeight: FontWeight.w600,
+                    fontSize: 18.0,
+                  ),
+                ).padding(all: 8.0),
+              ),
             ),
           ),
         ),

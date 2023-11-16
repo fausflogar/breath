@@ -2,16 +2,15 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:just_breathe/utils/utils.dart';
-import 'package:tinycolor/tinycolor.dart';
+import 'package:tinycolor2/tinycolor2.dart';
 
 class CupertinoBreathe extends StatefulWidget {
   @override
   _CupertinoBreatheState createState() => _CupertinoBreatheState();
 }
 
-class _CupertinoBreatheState extends State<CupertinoBreathe>
-    with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+class _CupertinoBreatheState extends State<CupertinoBreathe> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
 
   @override
   void initState() {
@@ -35,12 +34,9 @@ class _CupertinoBreatheState extends State<CupertinoBreathe>
         aspectRatio: 0.75,
         child: CustomPaint(
           painter: _BreathePainter(
-            CurvedAnimation(
-                parent: _controller,
-                curve: Curves.easeOutQuart,
-                reverseCurve: Curves.easeOutQuart),
-            color: Theme.of(context).accentColor,
-            isDarkMode: isDark(context),
+            CurvedAnimation(parent: _controller, curve: Curves.easeOutQuart, reverseCurve: Curves.easeOutQuart),
+            color: Theme.of(context).colorScheme.secondary,
+            isDarkMode: false,
           ),
           size: Size.infinite,
         ),
@@ -52,13 +48,11 @@ class _CupertinoBreatheState extends State<CupertinoBreathe>
 class _BreathePainter extends CustomPainter {
   _BreathePainter(
     this.animation, {
-    this.isDarkMode,
+    required this.isDarkMode,
     this.count = 6,
-    this.color,
+    required this.color,
   })  : circlePaint = Paint()
-          ..color = isDarkMode
-              ? color
-              : TinyColor(color).lighten(15).saturate(28).color
+          ..color = isDarkMode ? color : TinyColor.fromColor(color).lighten(15).saturate(28).color
           ..blendMode = isDarkMode ? BlendMode.screen : BlendMode.modulate,
         super(repaint: animation);
 
@@ -81,6 +75,5 @@ class _BreathePainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(_BreathePainter oldDelegate) =>
-      animation != oldDelegate.animation;
+  bool shouldRepaint(_BreathePainter oldDelegate) => animation != oldDelegate.animation;
 }

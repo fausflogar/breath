@@ -4,20 +4,20 @@ import 'package:styled_widget/styled_widget.dart';
 class SettingsCard extends StatefulWidget {
   final Widget leading;
   final Widget title;
-  final Widget subtitle;
+  final Widget? subtitle;
   final Widget trailing;
   // When enabled, the top border is rounded
   final bool start;
   // When enabled, the bottom border is rounded
   final bool end;
   SettingsCard(
-      {this.leading,
-      this.title,
+      {required this.leading,
+      required this.title,
       this.subtitle,
-      this.trailing,
+      required this.trailing,
       this.start = false,
       this.end = false,
-      Key key})
+      Key? key})
       : super(key: key);
 
   @override
