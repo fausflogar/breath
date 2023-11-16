@@ -1,8 +1,8 @@
-import 'package:flutter_riverpod/all.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_breathe/model/settings.dart';
 
 class AppStateNotifier extends StateNotifier<AppState> {
-  AppStateNotifier([AppState appState]) : super(appState ?? AppState());
+  AppStateNotifier([AppState? appState]) : super(appState ?? AppState());
 
   void toggleZenMode() {
     state = state.copyWith(isZenMode: !state.isZenMode);
@@ -21,6 +21,6 @@ class AppStateNotifier extends StateNotifier<AppState> {
   }
 }
 
-final appStateProvider = StateNotifierProvider<AppStateNotifier>((ref) {
+final appStateProvider = StateNotifierProvider<AppStateNotifier, AppState>((ref) {
   return AppStateNotifier();
 });

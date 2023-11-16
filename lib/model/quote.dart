@@ -3,5 +3,5 @@ class Quote {
   String body;
   String author;
 
-  Quote({this.body, this.author});
+  Quote({required this.body, required this.author});
 }

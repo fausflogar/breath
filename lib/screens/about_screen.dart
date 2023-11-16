@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:just_breathe/constants/ui.dart';
 import 'package:just_breathe/generated/l10n.dart';
-import 'package:url_launcher/url_launcher.dart';
+//import 'package:url_launcher/url_launcher.dart';
+//import 'package:url_launcher/url_launcher_string.dart';
 
 class AboutScreen extends StatelessWidget {
-  const AboutScreen({Key key}) : super(key: key);
+  const AboutScreen({Key? key}) : super(key: key);
 
   Future<void> _launchEmailClient() async {
     const url = 'mailto:$devEmail?subject=justBreathe';
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      print('Could not launch $url');
-    }
+    // if (await canLaunchUrlString(url)) {
+    //   await launchUrlString(url);
+    //  } else {
+    print('Could not launch $url');
+    //  }
   }
 
   Future<void> _launchWebsite() async {
     const url = 'https://$productSite';
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      print('Could not launch $url');
-    }
+    //  if (await canLaunch(url)) {
+    //     await launch(url);
+    //   } else {
+    print('Could not launch $url');
+    //  }
   }
 
   @override
@@ -30,7 +30,7 @@ class AboutScreen extends StatelessWidget {
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
         child: IconButton(
-          icon: Icon(Feather.arrow_down),
+          icon: Icon(Icons.arrow_downward),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -50,22 +50,22 @@ class AboutScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 12.0),
                 Text(
-                  S.of(context).aboutBlurb,
+                  S.of(context)!.aboutBlurb,
                   textAlign: TextAlign.center,
                 ),
-                FlatButton(
-                  child: Text(S.of(context).websiteButton),
+                TextButton(
+                  child: Text(S.of(context)!.websiteButton),
                   onPressed: () async => _launchWebsite(),
                 ),
                 SizedBox(height: 12),
                 Wrap(
                   children: <Widget>[
-                    FlatButton(
-                      child: Text(S.of(context).attributonButton),
+                    TextButton(
+                      child: Text(S.of(context)!.attributonButton),
                       onPressed: () => showLicensePage(context: context),
                     ),
-                    FlatButton(
-                      child: Text(S.of(context).contactButton),
+                    TextButton(
+                      child: Text(S.of(context)!.contactButton),
                       onPressed: () async => _launchEmailClient(),
                     ),
                   ],
