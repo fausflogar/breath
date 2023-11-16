@@ -19,6 +19,7 @@ const Color fgDark = Color(0xFFE7E7E8);
 const Color darkSurface = Color(0xFF29282c);
 const Color lightSurface = Color(0xFFf5f5f6);
 
+final ThemeData theme = ThemeData();
 final lightTheme = ThemeData(
   scaffoldBackgroundColor: fgDark,
   appBarTheme: AppBarTheme(
@@ -31,7 +32,7 @@ final lightTheme = ThemeData(
     elevation: 0.0,
   ),
   canvasColor: lightSurface,
-  accentColor: lightAccent,
+  colorScheme: theme.colorScheme.copyWith(secondary: lightAccent),
   splashColor: Colors.transparent,
   iconTheme: IconThemeData(color: bgDark),
   buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.accent),
@@ -86,7 +87,7 @@ final darkTheme = ThemeData(
     elevation: 0.0,
   ),
   canvasColor: darkSurface,
-  accentColor: accent,
+  colorScheme: theme.colorScheme.copyWith(secondary: lightAccent),
   splashColor: Colors.transparent,
   disabledColor: Color(0xFF29282c),
   iconTheme: IconThemeData(color: fgDark),

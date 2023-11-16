@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:just_breathe/constants/quotes.dart';
-import 'package:flutter_riverpod/all.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_breathe/model/quote.dart';
 import 'package:just_breathe/providers/settings_provider.dart';
 
@@ -23,8 +23,8 @@ void loadLicenses() {
 }
 
 /// Determine if its currently dark or light mode
-bool isDark(BuildContext context) {
-  return context.read(appStateProvider.state).isDarkMode;
+bool isDark(BuildContext context, WidgetRef ref) {
+  return ref.read(appStateProvider).isDarkMode;
 }
 
 /// A function that returns a random quote from [kDefaultQuotes]
