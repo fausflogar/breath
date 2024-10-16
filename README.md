@@ -1,5 +1,5 @@
 <h1 align="center">
-    justBreathe
+    justbreathe
     <br>
     <img alt="Logo" src="press/logo.png" height="250"> 
 </h1>

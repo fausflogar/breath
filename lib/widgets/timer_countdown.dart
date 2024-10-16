@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:just_breathe/generated/l10n.dart';
 import 'package:just_breathe/model/quote.dart';
 import 'package:just_breathe/utils/extensions.dart';
@@ -43,13 +43,12 @@ class _TimerCountdown extends State<TimerCountdown> {
   String _display = 'Be at peace';
 
   // Play a sound
-  void _playSound() {
+  Future<void> _playSound() async {
     if (widget.playSounds) {
-      final assetsAudioPlayer = AssetsAudioPlayer();
-      assetsAudioPlayer.open(
-        Audio("assets/audio/gong.mp3"),
-        autoStart: true,
-      );
+      final player = AudioPlayer();
+      await player.setAsset('assets/audio/gong.mp3');
+      player.play();
+
     }
   }
 

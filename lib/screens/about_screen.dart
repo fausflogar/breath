@@ -1,28 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:just_breathe/constants/ui.dart';
 import 'package:just_breathe/generated/l10n.dart';
-//import 'package:url_launcher/url_launcher.dart';
-//import 'package:url_launcher/url_launcher_string.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({Key? key}) : super(key: key);
 
   Future<void> _launchEmailClient() async {
     const url = 'mailto:$devEmail?subject=justBreathe';
-    // if (await canLaunchUrlString(url)) {
-    //   await launchUrlString(url);
-    //  } else {
-    print('Could not launch $url');
-    //  }
+    if (await canLaunchUrlString(url)) {
+      await launchUrlString(url);
+    } else {
+      print('Could not launch $url');
+    }
   }
 
   Future<void> _launchWebsite() async {
     const url = 'https://$productSite';
-    //  if (await canLaunch(url)) {
-    //     await launch(url);
-    //   } else {
-    print('Could not launch $url');
-    //  }
+    if (await canLaunchUrlString(url)) {
+      await launchUrlString(url);
+    } else {
+      print('Could not launch $url');
+    }
   }
 
   @override
@@ -46,7 +45,7 @@ class AboutScreen extends StatelessWidget {
               children: <Widget>[
                 Text(
                   appTitle,
-                  style: Theme.of(context).textTheme.headline5,
+                  style: Theme.of(context).textTheme.headlineMedium,
                 ),
                 SizedBox(height: 12.0),
                 Text(
