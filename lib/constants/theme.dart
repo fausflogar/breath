@@ -37,41 +37,45 @@ final lightTheme = ThemeData(
   iconTheme: IconThemeData(color: bgDark),
   buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.accent),
   textTheme: TextTheme(
-    button: TextStyle(color: bgDark),
-    headline6: GoogleFonts.varelaRound(
+    labelLarge: TextStyle(color: bgDark),
+    titleLarge: GoogleFonts.varelaRound(
       color: bgDark.withOpacity(0.75),
     ),
     // Used for the TimerCountdown text
-    bodyText1: GoogleFonts.varelaRound(
+    bodyLarge: GoogleFonts.varelaRound(
       fontSize: 32.0,
       color: bgDark,
     ),
-    headline5: GoogleFonts.montserrat(
+    headlineSmall: GoogleFonts.montserrat(
       color: lightAccent,
       fontWeight: FontWeight.w500,
     ),
-    subtitle1: GoogleFonts.varelaRound(
+    displayLarge: GoogleFonts.varelaRound(
       color: bgDark,
       fontSize: 18.0,
       fontWeight: FontWeight.w600,
     ),
-    subtitle2: GoogleFonts.varelaRound(
+    displayMedium: GoogleFonts.varelaRound(
       color: bgDark.withOpacity(0.8),
     ),
-    headline4: GoogleFonts.varelaRound(
+    headlineMedium: GoogleFonts.varelaRound(
       color: bgDark,
     ),
-    headline3: GoogleFonts.montserrat(
+    displaySmall: GoogleFonts.montserrat(
       color: bgDark,
       fontWeight: FontWeight.w500,
     ),
-    bodyText2: GoogleFonts.varelaRound(
+    bodyMedium: GoogleFonts.varelaRound(
       color: bgDark,
       fontSize: 13.0,
     ),
-    caption: GoogleFonts.varelaRound(
+    labelMedium: GoogleFonts.varelaRound(
       color: bgDark,
       fontSize: 13.0,
+    ),
+    titleMedium: GoogleFonts.varelaRound(
+      color: bgDark,
+      fontSize: 15.0,
     ),
   ),
 );
@@ -93,40 +97,48 @@ final darkTheme = ThemeData(
   iconTheme: IconThemeData(color: fgDark),
   buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.accent),
   textTheme: TextTheme(
-    button: TextStyle(color: fgDark),
-    headline6: GoogleFonts.varelaRound(
+    labelLarge: TextStyle(color: fgDark),
+    titleLarge: GoogleFonts.varelaRound(
       color: fgDark.withOpacity(0.75),
     ),
-    headline5: GoogleFonts.montserrat(
+    bodyLarge: GoogleFonts.varelaRound(
+      fontSize: 32.0,
+      color: bgDark,
+    ),
+    /* bodyLarge: GoogleFonts.montserrat(
       color: accent,
       fontWeight: FontWeight.w500,
+    ),*/
+    headlineSmall: GoogleFonts.montserrat(
+      color: fgDark,
+      fontWeight: FontWeight.w500,
     ),
-    subtitle1: GoogleFonts.varelaRound(
+    displayLarge: GoogleFonts.varelaRound(
       color: fgDark,
       fontSize: 18.0,
       fontWeight: FontWeight.w600,
     ),
-    subtitle2: GoogleFonts.varelaRound(
+    displayMedium: GoogleFonts.varelaRound(
       color: fgDark.withOpacity(0.8),
     ),
-    headline4: GoogleFonts.varelaRound(
+    headlineMedium: GoogleFonts.varelaRound(
       color: fgDark,
     ),
-    headline3: GoogleFonts.montserrat(
+    displaySmall: GoogleFonts.montserrat(
       color: accent,
       fontWeight: FontWeight.w500,
     ),
-    bodyText2: GoogleFonts.varelaRound(
+    bodyMedium: GoogleFonts.varelaRound(
       color: fgDark,
       fontSize: 13.0,
     ),
-    bodyText1: GoogleFonts.varelaRound(
-      fontSize: 32.0,
-      color: fgDark,
-    ),
-    caption: GoogleFonts.varelaRound(
+    labelMedium: GoogleFonts.varelaRound(
       color: fgDark,
       fontSize: 13.0,
+    ),
+    titleMedium: GoogleFonts.varelaRound(
+      color: fgDark,
+      fontSize: 15.0,
     ),
   ),
 );
