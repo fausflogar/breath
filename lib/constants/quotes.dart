@@ -1,10 +1,11 @@
+import 'package:breathe/generated/l10n.dart';
+import 'package:breathe/model/quote.dart';
+import 'package:breathe/screens/completion_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:just_breathe/model/quote.dart';
-import 'package:just_breathe/generated/l10n.dart';
 
 /// These are the default quotes displayed in [CompletionScreen]
 List<Quote> kDefaultQuotes(BuildContext context) {
-  return [
+  return <Quote>[
     Quote(
       author: 'Aristotle',
       body: S.of(context)!.aristotleQuote,

@@ -1,12 +1,16 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'dart:math';
 
+import 'package:breathe/constants/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:just_breathe/constants/theme.dart';
 import 'package:tinycolor2/tinycolor2.dart';
 
 class CountdownCircle extends StatefulWidget {
-  CountdownCircle({required this.duration});
+  const CountdownCircle({super.key, required this.duration});
+
   final Duration duration;
+
   @override
   _CountdownCircleState createState() => _CountdownCircleState();
 }
@@ -34,13 +38,13 @@ class _CountdownCircleState extends State<CountdownCircle> with SingleTickerProv
   Widget build(BuildContext context) {
     return Center(
       child: AspectRatio(
-        aspectRatio: 1.0,
+        aspectRatio: 1,
         child: CustomPaint(
           painter: _CircleCountdownPainter(
-              thinRing: Theme.of(context).colorScheme.secondary.withOpacity(0.85),
-              tickerRing: Theme.of(context).colorScheme.secondary,
-              animation: Tween<double>(begin: 0.0, end: pi * 2)
-                  .animate(CurvedAnimation(parent: _controller, curve: Curves.linear))),
+            thinRing: Theme.of(context).colorScheme.secondary.withOpacity(0.85),
+            tickerRing: Theme.of(context).colorScheme.secondary,
+            animation: Tween<double>(begin: 0, end: pi * 2).animate(CurvedAnimation(parent: _controller, curve: Curves.linear)),
+          ),
           size: Size.infinite,
         ),
       ),
@@ -72,9 +76,9 @@ class _CircleCountdownPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final center = size.center(Offset.zero);
-    final radius = (size.shortestSide * 0.30);
-    final rect = Rect.fromCircle(center: center, radius: radius);
+    final Offset center = size.center(Offset.zero);
+    final double radius = size.shortestSide * 0.30;
+    final Rect rect = Rect.fromCircle(center: center, radius: radius);
 
     // Draw the thin ring
     canvas.drawCircle(
@@ -91,7 +95,7 @@ class _CircleCountdownPainter extends CustomPainter {
         tickerRing,
         TinyColor.fromColor(tickerRing).darken(5).color,
       ],
-      stops: [0.0, 0.5, 1.0],
+      stops: const <double>[0, 0.5, 1],
     );
 
     /// Draw the countdown circle based on [animation.value]
