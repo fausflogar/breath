@@ -20,43 +20,36 @@ const Color darkSurface = Color(0xFF29282c);
 const Color lightSurface = Color(0xFFf5f5f6);
 
 final ThemeData theme = ThemeData();
-final lightTheme = ThemeData(
+final ThemeData lightTheme = ThemeData(
   scaffoldBackgroundColor: fgDark,
-  appBarTheme: AppBarTheme(
+  appBarTheme: const AppBarTheme(
     color: fgDark,
     elevation: 0,
   ),
-  disabledColor: Color(0xFFd0d0d1),
-  bottomAppBarTheme: BottomAppBarTheme(
+  disabledColor: const Color(0xFFd0d0d1),
+  bottomAppBarTheme: const BottomAppBarTheme(
     color: fgDark,
-    elevation: 0.0,
+    elevation: 0,
   ),
   canvasColor: lightSurface,
   colorScheme: theme.colorScheme.copyWith(secondary: lightAccent),
   splashColor: Colors.transparent,
-  iconTheme: IconThemeData(color: bgDark),
-  buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.accent),
+  iconTheme: const IconThemeData(color: bgDark),
+  buttonTheme: const ButtonThemeData(textTheme: ButtonTextTheme.accent),
   textTheme: TextTheme(
-    labelLarge: TextStyle(color: bgDark),
+    labelLarge: const TextStyle(color: bgDark),
     titleLarge: GoogleFonts.varelaRound(
       color: bgDark.withOpacity(0.75),
     ),
     // Used for the TimerCountdown text
     bodyLarge: GoogleFonts.varelaRound(
-      fontSize: 32.0,
+      fontSize: 32,
       color: bgDark,
-    ),
-    headlineSmall: GoogleFonts.montserrat(
-      color: lightAccent,
-      fontWeight: FontWeight.w500,
     ),
     displayLarge: GoogleFonts.varelaRound(
       color: bgDark,
-      fontSize: 18.0,
+      fontSize: 18,
       fontWeight: FontWeight.w600,
-    ),
-    displayMedium: GoogleFonts.varelaRound(
-      color: bgDark.withOpacity(0.8),
     ),
     headlineMedium: GoogleFonts.varelaRound(
       color: bgDark,
@@ -65,61 +58,42 @@ final lightTheme = ThemeData(
       color: bgDark,
       fontWeight: FontWeight.w500,
     ),
-    bodyMedium: GoogleFonts.varelaRound(
-      color: bgDark,
-      fontSize: 13.0,
-    ),
-    labelMedium: GoogleFonts.varelaRound(
-      color: bgDark,
-      fontSize: 13.0,
-    ),
     titleMedium: GoogleFonts.varelaRound(
       color: bgDark,
-      fontSize: 15.0,
+      fontSize: 15,
     ),
   ),
 );
 
-final darkTheme = ThemeData(
+final ThemeData darkTheme = ThemeData(
   scaffoldBackgroundColor: bgDark,
-  appBarTheme: AppBarTheme(
+  appBarTheme: const AppBarTheme(
     color: bgDark,
     elevation: 0,
   ),
-  bottomAppBarTheme: BottomAppBarTheme(
+  bottomAppBarTheme: const BottomAppBarTheme(
     color: bgDark,
-    elevation: 0.0,
+    elevation: 0,
   ),
   canvasColor: darkSurface,
   colorScheme: theme.colorScheme.copyWith(secondary: lightAccent),
   splashColor: Colors.transparent,
-  disabledColor: Color(0xFF29282c),
-  iconTheme: IconThemeData(color: fgDark),
-  buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.accent),
+  disabledColor: const Color(0xFF29282c),
+  iconTheme: const IconThemeData(color: fgDark),
+  buttonTheme: const ButtonThemeData(textTheme: ButtonTextTheme.accent),
   textTheme: TextTheme(
-    labelLarge: TextStyle(color: fgDark),
+    labelLarge: const TextStyle(color: fgDark),
     titleLarge: GoogleFonts.varelaRound(
       color: fgDark.withOpacity(0.75),
     ),
     bodyLarge: GoogleFonts.varelaRound(
-      fontSize: 32.0,
-      color: bgDark,
-    ),
-    /* bodyLarge: GoogleFonts.montserrat(
-      color: accent,
-      fontWeight: FontWeight.w500,
-    ),*/
-    headlineSmall: GoogleFonts.montserrat(
+      fontSize: 32,
       color: fgDark,
-      fontWeight: FontWeight.w500,
     ),
     displayLarge: GoogleFonts.varelaRound(
       color: fgDark,
-      fontSize: 18.0,
+      fontSize: 18,
       fontWeight: FontWeight.w600,
-    ),
-    displayMedium: GoogleFonts.varelaRound(
-      color: fgDark.withOpacity(0.8),
     ),
     headlineMedium: GoogleFonts.varelaRound(
       color: fgDark,
@@ -128,17 +102,9 @@ final darkTheme = ThemeData(
       color: accent,
       fontWeight: FontWeight.w500,
     ),
-    bodyMedium: GoogleFonts.varelaRound(
-      color: fgDark,
-      fontSize: 13.0,
-    ),
-    labelMedium: GoogleFonts.varelaRound(
-      color: fgDark,
-      fontSize: 13.0,
-    ),
     titleMedium: GoogleFonts.varelaRound(
       color: fgDark,
-      fontSize: 15.0,
+      fontSize: 15,
     ),
   ),
 );

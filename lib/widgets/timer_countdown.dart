@@ -1,30 +1,31 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'dart:async';
 
+import 'package:breathe/generated/l10n.dart';
+import 'package:breathe/model/quote.dart';
+import 'package:breathe/pages_routes.dart';
+import 'package:breathe/screens/completion_screen.dart';
+import 'package:breathe/screens/main_screen.dart';
+import 'package:breathe/utils/extensions.dart';
+import 'package:breathe/utils/utils.dart';
+import 'package:breathe/widgets/big_button.dart';
+import 'package:breathe/widgets/countdown_circle.dart';
+import 'package:breathe/widgets/nash_breathe.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:just_breathe/generated/l10n.dart';
-import 'package:just_breathe/model/quote.dart';
-import 'package:just_breathe/utils/extensions.dart';
-import 'package:just_breathe/pages_routes.dart';
-import 'package:just_breathe/screens/completion_screen.dart';
-import 'package:just_breathe/screens/main_screen.dart';
-import 'package:just_breathe/utils/utils.dart';
-import 'package:just_breathe/widgets/nash_breathe.dart';
-import 'package:just_breathe/widgets/countdown_circle.dart';
-import 'package:styled_widget/styled_widget.dart';
 
 /// This is the class that is responsible for keeping a timer.
 /// It can either display a simple breathe animation, if [zenMode] is enabled
 /// or traditional countdown timer
 /// It can play a gong sounds to mark the beginning and end of the countdown
 class TimerCountdown extends StatefulWidget {
+  const TimerCountdown(this.duration, {required this.zenMode, required this.playSounds, super.key});
+
   /// How many seconds to countdown from
   final Duration duration;
   final bool zenMode;
   final bool playSounds;
-
-  TimerCountdown(this.duration, {required this.zenMode, required this.playSounds, Key? key}) : super(key: key);
 
   @override
   _TimerCountdown createState() => _TimerCountdown();
@@ -45,10 +46,9 @@ class _TimerCountdown extends State<TimerCountdown> {
   // Play a sound
   Future<void> _playSound() async {
     if (widget.playSounds) {
-      final player = AudioPlayer();
+      final AudioPlayer player = AudioPlayer();
       await player.setAsset('assets/audio/gong.mp3');
-      player.play();
-
+      await player.play();
     }
   }
 
@@ -77,10 +77,10 @@ class _TimerCountdown extends State<TimerCountdown> {
     // if (_timer != null) {
     //   if (_timer.isActive) return;
     // }
-    _timer = Timer.periodic(Duration(milliseconds: 10), (Timer t) {
+    _timer = Timer.periodic(const Duration(milliseconds: 10), (Timer t) {
       // update display
       setState(() {
-        var diff = (_elapsedTime - _stopwatch.elapsed);
+        final Duration diff = _elapsedTime - _stopwatch.elapsed;
         _display = diff.clockFmt();
         if (diff.inMilliseconds <= 0) {
           _playSound();
@@ -111,14 +111,17 @@ class _TimerCountdown extends State<TimerCountdown> {
     });
 
     if (cancelled) {
-      Navigator.of(context).pushReplacement(PageRoutes.fade(() => MainScreen(), milliseconds: 450));
+      Navigator.of(context).pushReplacement(PageRoutes.fade(() => const MainScreen(), milliseconds: 450));
     } else {
-      Quote _quote = getQuote(context);
-      Navigator.of(context).pushReplacement(PageRoutes.fade(
+      final Quote quote = getQuote(context);
+      Navigator.of(context).pushReplacement(
+        PageRoutes.fade(
           () => CompletionScreen(
-                quote: _quote,
-              ),
-          milliseconds: 800));
+            quote: quote,
+          ),
+          milliseconds: 800,
+        ),
+      );
     }
   }
 
@@ -126,53 +129,28 @@ class _TimerCountdown extends State<TimerCountdown> {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        widget.zenMode
-            ? Expanded(child: CupertinoBreathe())
-            : Expanded(
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: <Widget>[
-                    SizedBox.expand(
-                      child: CountdownCircle(
-                        duration: widget.duration,
-                      ),
-                    ),
-                    Container(
-                      child: Text(
-                        _display,
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-        Flexible(
-          flex: 1,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 21.0),
-            child: SizedBox(
-              width: double.infinity,
-              child: TextButton(
-                style: ButtonStyle(
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(68.0),
-                  )),
-                  backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).disabledColor),
-                ),
-                onPressed: () => stop(),
-                child: Text(
-                  S.of(context)!.endButton.toUpperCase(),
-                  style: GoogleFonts.varelaRound(
-                    color: Color(0xFF707073),
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18.0,
+        if (widget.zenMode)
+          const Expanded(child: CupertinoBreathe())
+        else
+          Expanded(
+            child: Stack(
+              alignment: Alignment.center,
+              children: <Widget>[
+                SizedBox.expand(
+                  child: CountdownCircle(
+                    duration: widget.duration,
                   ),
-                ).padding(all: 8.0),
-              ),
+                ),
+                Text(
+                  _display,
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+              ],
             ),
           ),
+        Flexible(
+          child: BigButton(text: S.of(context)!.endButton.toUpperCase(), onPressed: () => stop()),
         ),
       ],
     );

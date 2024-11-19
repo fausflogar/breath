@@ -1,9 +1,9 @@
 // This is used by the main english ARB file
 
-const appTitle = 'justBreathe';
+const String appTitle = 'Breathe';
 
-// TODO: Don't hardcode this; load it from a ENV or a build-specific file
+// TODO(FFG): Don't hardcode this; load it from a ENV or a build-specific file
 // OPSEC: this is a public email
-const devEmail = 'jethro.lorenzo.lising@gmail.com';
+const String devEmail = 'mail@gmail.com';
 
-const productSite = 'justbreathe.lising.ca';
+const String productSite = 'website.com';

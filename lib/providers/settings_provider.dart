@@ -1,5 +1,5 @@
+import 'package:breathe/model/settings.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:just_breathe/model/settings.dart';
 
 class AppStateNotifier extends StateNotifier<AppState> {
   AppStateNotifier([AppState? appState]) : super(appState ?? AppState());
@@ -21,6 +21,7 @@ class AppStateNotifier extends StateNotifier<AppState> {
   }
 }
 
-final appStateProvider = StateNotifierProvider<AppStateNotifier, AppState>((ref) {
+final StateNotifierProvider<AppStateNotifier, AppState> appStateProvider =
+    StateNotifierProvider<AppStateNotifier, AppState>((StateNotifierProviderRef<AppStateNotifier, AppState> ref) {
   return AppStateNotifier();
 });

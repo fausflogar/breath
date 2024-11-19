@@ -1,24 +1,29 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 class SettingsCard extends StatefulWidget {
+  const SettingsCard({
+    required this.leading,
+    required this.title,
+    this.subtitle,
+    required this.trailing,
+    this.start = false,
+    this.end = false,
+    super.key,
+  });
+
   final Widget leading;
   final Widget title;
   final Widget? subtitle;
   final Widget trailing;
+
   // When enabled, the top border is rounded
   final bool start;
+
   // When enabled, the bottom border is rounded
   final bool end;
-  SettingsCard(
-      {required this.leading,
-      required this.title,
-      this.subtitle,
-      required this.trailing,
-      this.start = false,
-      this.end = false,
-      Key? key})
-      : super(key: key);
 
   @override
   _SettingsCard createState() => _SettingsCard();
@@ -28,8 +33,8 @@ class _SettingsCard extends State<SettingsCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 24.0, horizontal: 32.0),
-      margin: EdgeInsets.only(bottom: 1.0, left: 21.0, right: 21.0),
+      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 32),
+      margin: const EdgeInsets.only(bottom: 1, left: 21, right: 21),
       decoration: BoxDecoration(
         color: Theme.of(context).canvasColor,
         borderRadius: BorderRadius.vertical(
@@ -38,24 +43,20 @@ class _SettingsCard extends State<SettingsCard> {
         ),
       ),
       child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          this.widget.leading,
-          SizedBox(
-            width: 21.0,
+          widget.leading,
+          const SizedBox(
+            width: 21,
           ),
           Column(
             mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              this.widget.title,
-              this.widget.subtitle ?? Container(),
+              widget.title,
+              widget.subtitle ?? Container(),
             ],
           ).expanded(),
-          SizedBox(
+          const SizedBox(
             width: 12,
           ),
           widget.trailing,
